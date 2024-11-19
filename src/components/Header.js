@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { RxCaretDown } from "react-icons/rx";
-import { IoIosSearch } from "react-icons/io";
-import { CiDiscount1 } from "react-icons/ci";
-
+import { FaSearch } from "react-icons/fa";
+import { RiDiscountPercentFill } from "react-icons/ri";
+import { IoHelpBuoySharp } from "react-icons/io5";
+import { IoLogIn } from "react-icons/io5";
+import { FaShoppingCart } from "react-icons/fa";
 
 function Header() {
   const [toggle, setToggle] = useState(false);
-
   const showSideMenu = () => {
     setToggle(true);
   };
@@ -14,6 +15,31 @@ function Header() {
   const hideSideMenu = () => {
     setToggle(false);
   };
+
+  const link = [
+    {
+      icon: <FaSearch/>,
+      name: "Search",
+    },
+    {
+      icon: <RiDiscountPercentFill />,
+      name: "Offer",
+      sup:"New"
+    },
+    {
+      icon: <IoHelpBuoySharp/>,
+      name: "Help",
+    },
+    {
+      icon: <IoLogIn />,
+      name: "Sign in",
+    },
+    {
+      icon: <FaShoppingCart />,
+      name: "Cart",
+      sup:"(1)"
+    },
+  ];
 
   return (
     <>
@@ -53,28 +79,16 @@ function Header() {
               className="inline text-[1.3rem] text-[#fc8019] cursor-pointer"
             />
           </div>
-          <div className="flex items-center list-none gap-8 ml-auto font-semibold text-[18px]">
-          <li>
-            <IoIosSearch className="inline"/>
-            Search
-          </li>
-          <li>
-           <CiDiscount1 className="inline"/>
-            Offer
-          </li>
-          <li>
-            <IoIosSearch className="inline"/>
-            Help
-          </li>
-          <li>
-            <IoIosSearch className="inline"/>
-            Sign
-          </li>
-          <li>
-            <IoIosSearch className="inline"/>
-            Cart
-          </li>
-            
+          <div className="flex items-center list-none gap-10 ml-auto font-semibold text-[18px]">
+            {link.map((link, index) => {
+              return ( 
+                <li key={index} className="flex gap-2 items-center hover:text-[#fc8019] cursor-pointer">
+                  {link.icon}
+                  {link.name}
+                  <sup>{link.sup}</sup>
+                </li>
+              );
+            })}
           </div>
         </div>
       </header>
